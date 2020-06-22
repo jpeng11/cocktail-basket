@@ -26,3 +26,7 @@ Visit [Cocktail Basket](https://cocktail-basket.herokuapp.com/). Login with Goog
 
 - Replace manual add cocktail function with AJAX Fetch function
 - Add personal cocktail list
+
+### Extra
+
+All the images, cocktail information are from [![TheCocktailDB](https://www.thecocktaildb.com/images/logo.png)](https://www.thecocktaildb.com/)
