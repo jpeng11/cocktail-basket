@@ -47,23 +47,41 @@ function show(req, res) {
  *  Create cocktail by fetch data from TheCocktailDB
  */
 async function create(req, res, next) {
-  console.log(req.body);
-  try {
-    await Cocktail.create({
-      name: req.body.name,
-      alcoholic: req.body.alcoholic === "true" ? true : false,
-      glass: req.body.glass,
-      drinkThumb: req.body.drinkThumb,
-      instruction: req.body.instruction,
-      ingredient: req.body.measure.map((m, idx) => ({
-        measure: m,
-        ingredient: req.body.ingredient[idx],
-      })),
+  await axios
+    .get("https://www.thecocktaildb.com/api/json/v1/1/search.php?", {
+      params: { s: req.body.name },
+    })
+    .then((response) => {
+        let drink = response.data.drinks[0]
+        if(Cocktail.exists({name: drink.strDrink})){
+          return next()
+        }else{
+          Cocktail.create({
+            name: result.strDrink,
+            alcoholic: result.strAlcoholic === "Alcoholic" ? true : false,
+            glass: result.strGlass,
+            instruction: result.strInstructions,
+            ingredient: [{
+              measure: result.strMeasure1,
+              ingredient:result.strIngredient1
+            },{
+              measure: result.strMeasure2,
+              ingredient:result.strIngredient2
+            },{
+              measure: result.strMeasure3,
+              ingredient:result.strIngredient3
+            }],
+            drinkThumb:result.strDrinkThumb
+          })
+        }
+        res.redirect("/cocktails/index");
+      }  
+    
+  )
+    .catch((err) => {
+      return next(err);
     });
-    res.redirect("/cocktails/index");
-  } catch (error) {
-    return next(error);
-  }
+
 }
 
 function removeOne(req, res) {
