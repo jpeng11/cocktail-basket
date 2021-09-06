@@ -25,9 +25,7 @@
           <img src="<%= c.drinkThumb %> " class="card-img-top" alt="..." />
           <div class="card-body">
             <h5 class="card-title"><%= c.name %></h5>
-            <p class="card-text">
-              <%= c.glass %>
-            </p>
+            <p class="card-text"><%= c.glass %></p>
             <p class="card-text">
               <%= c.alcoholic===true? 'Alcoholic Drink':"Non Alcoholic Drink" %>
             </p>
@@ -84,6 +82,7 @@
       <% } %>
     </div>
 
+    <%#
     <!-- Modal -->
     <div
       class="modal fade"
@@ -139,9 +138,7 @@
                     value="yes"
                     required
                   />
-                  <label class="form-check-label" for="yes">
-                    Yes
-                  </label>
+                  <label class="form-check-label" for="yes"> Yes </label>
                 </div>
                 <div class="form-check form-check-inline">
                   <input
@@ -151,9 +148,7 @@
                     id="no"
                     value="no"
                   />
-                  <label class="form-check-label" for="no">
-                    No
-                  </label>
+                  <label class="form-check-label" for="no"> No </label>
                 </div>
               </div>
               <!-- Glass -->
@@ -242,6 +237,64 @@
               <button class="btn btn-outline-info" id="addMore" type="button">
                 Add
               </button>
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  data-dismiss="modal"
+                >
+                  Close
+                </button>
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    #%>
+
+    <div
+      class="modal fade"
+      id="addCocktailModal"
+      data-backdrop="static"
+      data-keyboard="false"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="addCocktailModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="addCocktailModalLabel">
+              Add more cocktail
+            </h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form action="/cocktails/add" method="POST">
+              <!-- Cocktail Name -->
+              <div class="form-group">
+                <label for="recipient-name" class="col-form-label"
+                  >Cocktail Name:</label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="cocktail-name"
+                  name="name"
+                  required
+                />
+              </div>
+
               <div class="modal-footer">
                 <button
                   type="button"
