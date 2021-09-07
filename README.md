@@ -24,8 +24,7 @@ Visit [Cocktail Basket](https://cocktail-basket.herokuapp.com/). Login with Goog
 
 ## Next Steps
 
-- Replace manual add cocktail function with AJAX Fetch function
-- Add personal cocktail list
+- ~~Replace manual add cocktail function with AJAX Fetch function~~
 
 ### Extra
 
